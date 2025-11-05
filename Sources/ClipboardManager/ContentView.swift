@@ -2,6 +2,7 @@ import SwiftUI
 
 struct ContentView: View {
     @ObservedObject var monitor: ClipboardMonitor
+    @ObservedObject var launchAtLoginManager: LaunchAtLoginManager
     @State private var searchText = ""
     var closePopover: () -> Void
     
@@ -16,6 +17,14 @@ struct ContentView: View {
                 Text(L10n.appTitle)
                     .font(.headline)
                 Spacer()
+                
+                Toggle(isOn: $launchAtLoginManager.isEnabled) {
+                    Image(systemName: "power")
+                }
+                .toggleStyle(.switch)
+                .help(L10n.launchAtLogin)
+                .controlSize(.small)
+                
                 Button(action: {
                     monitor.clearHistory()
                 }) {

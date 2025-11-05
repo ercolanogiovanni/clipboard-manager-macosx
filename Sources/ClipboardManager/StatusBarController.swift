@@ -6,11 +6,13 @@ class StatusBarController {
     private var statusItem: NSStatusItem
     private var popover: NSPopover
     private var monitor: ClipboardMonitor
+    private var launchAtLoginManager: LaunchAtLoginManager
     private var popoverWindow: NSWindow?
     
-    init(monitor: ClipboardMonitor) {
+    init(monitor: ClipboardMonitor, launchAtLoginManager: LaunchAtLoginManager) {
         print("  🔧 StatusBarController.init - start")
         self.monitor = monitor
+        self.launchAtLoginManager = launchAtLoginManager
         print("  🔧 Creating statusItem...")
         self.statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
         print("  🔧 Creating popover...")
@@ -42,9 +44,13 @@ class StatusBarController {
         
         if popover.contentViewController == nil {
             popover.contentViewController = NSHostingController(
-                rootView: ContentView(monitor: monitor, closePopover: { [weak self] in
-                    self?.closePopover()
-                })
+                rootView: ContentView(
+                    monitor: monitor,
+                    launchAtLoginManager: launchAtLoginManager,
+                    closePopover: { [weak self] in
+                        self?.closePopover()
+                    }
+                )
             )
         }
     }

@@ -27,4 +27,7 @@ enum L10n {
     static let delete = NSLocalizedString("delete", comment: "Delete tooltip")
     static let pin = NSLocalizedString("pin", comment: "Pin tooltip")
     static let unpin = NSLocalizedString("unpin", comment: "Unpin tooltip")
+    
+    // Settings
+    static let launchAtLogin = NSLocalizedString("launch.at.login", comment: "Launch at login toggle")
 }

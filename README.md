@@ -1,100 +1,116 @@
-# Clipboard Manager per macOS
+# Clipboard Manager for macOS
 
-Un clipboard manager leggero e moderno per macOS che vive nella barra dei menu.
+[🇮🇹 Versione Italiana](README.it.md)
 
-## Caratteristiche
+A lightweight and modern clipboard manager for macOS that lives in your menu bar.
 
-- 📋 **Cronologia completa**: Memorizza fino a 100 elementi copiati
-- 🔍 **Ricerca veloce**: Trova rapidamente ciò che hai copiato in passato
-- 💾 **Persistenza**: La cronologia viene salvata automaticamente
-- 🎨 **Interfaccia moderna**: UI pulita con SwiftUI
-- ⚡ **Leggero**: Vive nella barra dei menu senza occupare spazio nel Dock
-- 🗑️ **Gestione facile**: Elimina singoli elementi o cancella tutta la cronologia
-- ⌨️ **Hotkey globale**: Apri la cronologia con **Cmd+Shift+V** da qualsiasi app
+## Features
 
-## Requisiti
+- 📋 **Complete History**: Stores up to 100 copied items
+- 🔍 **Fast Search**: Quickly find what you've copied in the past
+- 💾 **Persistence**: History is automatically saved
+- 🎨 **Modern Interface**: Clean UI built with SwiftUI
+- ⚡ **Lightweight**: Lives in the menu bar without taking up Dock space
+- 📌 **Pin Items**: Pin important items to keep them always at the top
+- 🗑️ **Easy Management**: Delete individual items or clear the entire history
+- ⌨️ **Global Hotkey**: Open history with **Cmd+Shift+V** from any app
+- 🚀 **Auto Launch**: Option to launch the app at login
+- 🌍 **Multilingual**: Full support for Italian and English
 
-- macOS 12.0 o superiore
-- Xcode con Swift 6.0
+## Requirements
 
-## Installazione
+- macOS 13.0 (Ventura) or later
+- Swift 6.0
 
-### Metodo 1: Crea l'app bundle e installa
+## Installation
 
-Usa lo script di build incluso per creare un'app macOS completa:
+### Method 1: Build and Install App Bundle
+
+Use the included build script to create a complete macOS app:
 
 ```bash
 ./build_app.sh
 ```
 
-Questo creerà `ClipboardManager.app` nella directory corrente. Per installarlo:
+This will create `ClipboardManager.app` in the current directory. To install it:
 
 ```bash
 cp -R ClipboardManager.app /Applications/
 ```
 
-Poi avvia l'app da Spotlight o dal Finder.
+Then launch the app from Spotlight or Finder.
 
-### Metodo 2: Compilazione ed esecuzione diretta
+### Method 2: Build and Run Directly
 
-Per sviluppo o test rapidi:
+For development or quick testing:
 
 ```bash
 swift build -c release
 .build/release/ClipboardManager
 ```
 
-Oppure esegui direttamente:
+Or run directly:
 
 ```bash
 swift run
 ```
 
-## Utilizzo
+## Usage
 
-1. Avvia l'applicazione - vedrai un'icona nella barra dei menu
-2. **Premi Cmd+Shift+V** da qualsiasi app per aprire la cronologia (oppure clicca sull'icona)
-3. Al primo avvio, concedi i permessi di Accessibility quando richiesto (necessari per l'hotkey globale)
-4. Clicca su un elemento per copiarlo nella clipboard
-5. Usa la barra di ricerca per filtrare gli elementi
-6. Passa il mouse su un elemento per vedere le opzioni di copia/eliminazione
+1. Launch the application - you'll see an icon in the menu bar
+2. **Press Cmd+Shift+V** from any app to open the history (or click the icon)
+3. On first launch, grant Accessibility permissions when prompted (required for global hotkey)
+4. Click on an item to copy it to the clipboard
+5. Use the search bar to filter items
+6. Hover over an item to see options (pin, copy, delete)
 
-### Funzionalità
+### Features
 
-- **Hotkey globale**: Premi **Cmd+Shift+V** da qualsiasi applicazione per aprire il menu
-- **Cronologia automatica**: Ogni testo copiato viene salvato automaticamente
-- **Copia rapida**: Clicca su un elemento per copiarlo e chiudere il popover
-- **Ricerca**: Filtra gli elementi digitando nella barra di ricerca
-- **Elimina**: Passa il mouse e clicca sull'icona cestino per eliminare un elemento
-- **Cancella tutto**: Clicca sull'icona cestino nell'header per svuotare la cronologia
-- **Esci**: Clicca sull'icona X nell'header per chiudere l'applicazione
+- **Global Hotkey**: Press **Cmd+Shift+V** from any application to open the menu
+- **Automatic History**: Every copied text is automatically saved
+- **Pin Items**: Pin important items - they won't be deleted when clearing history
+- **Quick Copy**: Click on an item to copy it and close the popover
+- **Search**: Filter items by typing in the search bar
+- **Delete**: Hover and click the trash icon to delete an item
+- **Clear All**: Click the trash icon in the header to clear history (preserves pinned items)
+- **Launch at Login**: Toggle the switch in the header to automatically launch the app at login
+- **Quit**: Click the X icon in the header to close the application
 
-## Struttura del progetto
+## Project Structure
 
 ```
 ClipboardManager/
 ├── Sources/
 │   └── ClipboardManager/
-│       ├── ClipboardManager.swift    # Entry point
-│       ├── AppDelegate.swift         # Application delegate
-│       ├── ClipboardItem.swift       # Modello dati
-│       ├── ClipboardMonitor.swift    # Monitoring clipboard
-│       ├── StatusBarController.swift # Menu bar controller
-│       └── ContentView.swift         # SwiftUI interface
+│       ├── ClipboardManager.swift      # Entry point
+│       ├── ClipboardItem.swift         # Data model
+│       ├── ClipboardMonitor.swift      # Clipboard monitoring
+│       ├── StatusBarController.swift   # Menu bar controller
+│       ├── HotKeyManager.swift         # Global hotkey handler
+│       ├── LaunchAtLoginManager.swift  # Launch at login handler
+│       ├── ContentView.swift           # SwiftUI interface
+│       ├── Localizable.swift           # Localization helper
+│       └── Resources/                  # Localization files
+│           ├── it.lproj/
+│           └── en.lproj/
 ├── Package.swift
+├── build_app.sh                        # Build script
+├── AppIcon.icns                        # App icon
 └── README.md
 ```
 
-## Note tecniche
+## Technical Notes
 
-- Utilizza `NSPasteboard` per monitorare i cambiamenti della clipboard
-- La cronologia viene salvata in `UserDefaults` per la persistenza
-- L'interfaccia è costruita con SwiftUI e AppKit
-- L'app usa `.accessory` activation policy per non apparire nel Dock
-- Il monitoring della clipboard avviene ogni 0.5 secondi
-- Hotkey globale implementato con Carbon Event Manager
-- **Richiede permessi di Accessibility** per l'hotkey globale (il sistema chiederà automaticamente)
+- Uses `NSPasteboard` to monitor clipboard changes
+- History is persisted in `UserDefaults`
+- Interface built with SwiftUI and AppKit
+- App uses `.accessory` activation policy to avoid appearing in the Dock
+- Clipboard monitoring runs every 0.5 seconds
+- Global hotkey implemented with Carbon Event Manager
+- Launch at login implemented with `SMAppService` (macOS 13+)
+- Automatic localization support for Italian/English based on system settings
+- **Requires Accessibility permissions** for global hotkey (system will prompt automatically)
 
-## Licenza
+## License
 
 MIT

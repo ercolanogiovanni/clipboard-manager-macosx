@@ -19,3 +19,6 @@
 /* Footer */
 "items.count" = "%d elementi";
 "hotkey.hint" = "⌘⇧V per aprire";
+
+/* Settings */
+"launch.at.login" = "Avvia al login";

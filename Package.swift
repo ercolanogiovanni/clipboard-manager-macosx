@@ -7,7 +7,7 @@ let package = Package(
     name: "ClipboardManager",
     defaultLocalization: "en",
     platforms: [
-        .macOS(.v12)
+        .macOS(.v13)
     ],
     targets: [
         .executableTarget(

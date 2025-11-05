@@ -19,3 +19,6 @@
 /* Footer */
 "items.count" = "%d items";
 "hotkey.hint" = "⌘⇧V to open";
+
+/* Settings */
+"launch.at.login" = "Launch at Login";

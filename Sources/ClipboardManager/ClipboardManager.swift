@@ -8,6 +8,7 @@ class ClipboardManagerApp: NSObject, NSApplicationDelegate {
     var statusBarController: StatusBarController?
     var monitor: ClipboardMonitor?
     var hotKeyManager: HotKeyManager?
+    var launchAtLoginManager: LaunchAtLoginManager?
     
     static func main() {
         let app = NSApplication.shared
@@ -24,9 +25,13 @@ class ClipboardManagerApp: NSObject, NSApplicationDelegate {
         monitor = ClipboardMonitor()
         print("✅ ClipboardMonitor created")
         
+        print("⚙️  Creating LaunchAtLoginManager...")
+        launchAtLoginManager = LaunchAtLoginManager()
+        print("✅ LaunchAtLoginManager created")
+        
         print("📊 Creating StatusBarController...")
-        if let monitor = monitor {
-            statusBarController = StatusBarController(monitor: monitor)
+        if let monitor = monitor, let launchAtLoginManager = launchAtLoginManager {
+            statusBarController = StatusBarController(monitor: monitor, launchAtLoginManager: launchAtLoginManager)
             print("✅ StatusBarController created")
         }
         

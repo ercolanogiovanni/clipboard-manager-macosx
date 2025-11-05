@@ -81,7 +81,7 @@ class ClipboardMonitor: ObservableObject {
     }
     
     func clearHistory() {
-        items.removeAll()
+        items.removeAll { !$0.isPinned }
         saveHistory()
     }
     

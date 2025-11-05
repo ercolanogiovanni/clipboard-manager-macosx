@@ -20,10 +20,11 @@ class ClipboardMonitor: ObservableObject {
     }
     
     func startMonitoring() {
-        // TODO: Fix timer crash
-        // timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { [weak self] _ in
-        //     self?.checkForChanges()
-        // }
+        timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { [weak self] _ in
+            Task { @MainActor in
+                self?.checkForChanges()
+            }
+        }
     }
     
     func stopMonitoring() {

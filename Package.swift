@@ -5,12 +5,16 @@ import PackageDescription
 
 let package = Package(
     name: "ClipboardManager",
+    defaultLocalization: "en",
     platforms: [
         .macOS(.v12)
     ],
     targets: [
         .executableTarget(
-            name: "ClipboardManager"),
+            name: "ClipboardManager",
+            resources: [
+                .process("Resources")
+            ]),
         .testTarget(
             name: "ClipboardManagerTests",
             dependencies: ["ClipboardManager"]

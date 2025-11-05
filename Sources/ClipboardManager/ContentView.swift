@@ -13,7 +13,7 @@ struct ContentView: View {
         VStack(spacing: 0) {
             // Header
             HStack {
-                Text("Clipboard Manager")
+                Text(L10n.appTitle)
                     .font(.headline)
                 Spacer()
                 Button(action: {
@@ -22,7 +22,7 @@ struct ContentView: View {
                     Image(systemName: "trash")
                 }
                 .buttonStyle(.plain)
-                .help("Cancella cronologia")
+                .help(L10n.clearHistory)
                 
                 Button(action: {
                     NSApplication.shared.terminate(nil)
@@ -30,7 +30,7 @@ struct ContentView: View {
                     Image(systemName: "xmark.circle")
                 }
                 .buttonStyle(.plain)
-                .help("Esci")
+                .help(L10n.quit)
             }
             .padding()
             
@@ -38,7 +38,7 @@ struct ContentView: View {
             HStack {
                 Image(systemName: "magnifyingglass")
                     .foregroundColor(.gray)
-                TextField("Cerca...", text: $searchText)
+                TextField(L10n.search, text: $searchText)
                     .textFieldStyle(.plain)
                 if !searchText.isEmpty {
                     Button(action: { searchText = "" }) {
@@ -62,7 +62,7 @@ struct ContentView: View {
                     Image(systemName: "doc.on.clipboard")
                         .font(.system(size: 48))
                         .foregroundColor(.gray)
-                    Text(searchText.isEmpty ? "Nessun elemento nella cronologia" : "Nessun risultato")
+                    Text(searchText.isEmpty ? L10n.emptyHistory : L10n.noResults)
                         .foregroundColor(.gray)
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -83,11 +83,11 @@ struct ContentView: View {
             
             // Footer
             HStack {
-                Text("\(filteredItems.count) elementi")
+                Text(L10n.itemsCount(filteredItems.count))
                     .font(.caption)
                     .foregroundColor(.gray)
                 Spacer()
-                Text("⌘⇧V per aprire")
+                Text(L10n.hotkeyHint)
                     .font(.caption)
                     .foregroundColor(.gray)
             }
@@ -125,7 +125,7 @@ struct ClipboardItemRow: View {
                             .foregroundColor(item.isPinned ? .orange : .gray)
                     }
                     .buttonStyle(.plain)
-                    .help(item.isPinned ? "Rimuovi pin" : "Fissa")
+                    .help(item.isPinned ? L10n.unpin : L10n.pin)
                     
                     Button(action: {
                         monitor.copyToClipboard(item)
@@ -134,7 +134,7 @@ struct ClipboardItemRow: View {
                         Image(systemName: "doc.on.doc")
                     }
                     .buttonStyle(.plain)
-                    .help("Copia")
+                    .help(L10n.copy)
                     
                     if !item.isPinned {
                         Button(action: {
@@ -144,7 +144,7 @@ struct ClipboardItemRow: View {
                                 .foregroundColor(.red)
                         }
                         .buttonStyle(.plain)
-                        .help("Elimina")
+                        .help(L10n.delete)
                     }
                 }
             }

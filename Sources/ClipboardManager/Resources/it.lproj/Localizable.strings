@@ -1,0 +1,21 @@
+/* Application */
+"app.title" = "Clipboard Manager";
+
+/* Actions */
+"clear.history" = "Cancella cronologia";
+"quit" = "Esci";
+"copy" = "Copia";
+"delete" = "Elimina";
+"pin" = "Fissa";
+"unpin" = "Rimuovi pin";
+
+/* Search */
+"search" = "Cerca...";
+
+/* Empty states */
+"empty.history" = "Nessun elemento nella cronologia";
+"no.results" = "Nessun risultato";
+
+/* Footer */
+"items.count" = "%d elementi";
+"hotkey.hint" = "⌘⇧V per aprire";

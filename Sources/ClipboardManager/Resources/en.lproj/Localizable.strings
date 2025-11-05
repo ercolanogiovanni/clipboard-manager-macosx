@@ -1,0 +1,21 @@
+/* Application */
+"app.title" = "Clipboard Manager";
+
+/* Actions */
+"clear.history" = "Clear history";
+"quit" = "Quit";
+"copy" = "Copy";
+"delete" = "Delete";
+"pin" = "Pin";
+"unpin" = "Unpin";
+
+/* Search */
+"search" = "Search...";
+
+/* Empty states */
+"empty.history" = "No items in history";
+"no.results" = "No results";
+
+/* Footer */
+"items.count" = "%d items";
+"hotkey.hint" = "⌘⇧V to open";

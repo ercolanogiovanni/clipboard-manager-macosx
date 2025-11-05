@@ -29,6 +29,12 @@ mkdir -p "$BUNDLE_RESOURCES"
 # Copy executable
 cp "$BUILD_DIR/$APP_NAME" "$BUNDLE_MACOS/"
 
+# Copy localization resources
+echo "🌍 Copying localization resources..."
+if [ -d "Sources/ClipboardManager/Resources" ]; then
+    cp -R Sources/ClipboardManager/Resources/* "$BUNDLE_RESOURCES/"
+fi
+
 # Create Info.plist
 echo "📝 Creating Info.plist..."
 cat > "$BUNDLE_CONTENTS/Info.plist" << EOF
@@ -54,6 +60,13 @@ cat > "$BUNDLE_CONTENTS/Info.plist" << EOF
     <true/>
     <key>NSHighResolutionCapable</key>
     <true/>
+    <key>CFBundleDevelopmentRegion</key>
+    <string>en</string>
+    <key>CFBundleLocalizations</key>
+    <array>
+        <string>en</string>
+        <string>it</string>
+    </array>
 </dict>
 </plist>
 EOF

@@ -19,24 +19,35 @@ Un clipboard manager leggero e moderno per macOS che vive nella barra dei menu.
 
 ## Installazione
 
-### Compilazione da sorgente
+### Metodo 1: Crea l'app bundle e installa
+
+Usa lo script di build incluso per creare un'app macOS completa:
 
 ```bash
-cd ClipboardManager
-swift build -c release
+./build_app.sh
 ```
 
-### Esecuzione
+Questo creerà `ClipboardManager.app` nella directory corrente. Per installarlo:
 
 ```bash
-swift run
+cp -R ClipboardManager.app /Applications/
 ```
 
-Oppure crea un'app bundle:
+Poi avvia l'app da Spotlight o dal Finder.
+
+### Metodo 2: Compilazione ed esecuzione diretta
+
+Per sviluppo o test rapidi:
 
 ```bash
 swift build -c release
 .build/release/ClipboardManager
+```
+
+Oppure esegui direttamente:
+
+```bash
+swift run
 ```
 
 ## Utilizzo

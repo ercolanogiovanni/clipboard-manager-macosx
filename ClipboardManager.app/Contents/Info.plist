@@ -27,5 +27,7 @@
         <string>en</string>
         <string>it</string>
     </array>
+    <key>CFBundleIconFile</key>
+    <string>AppIcon</string>
 </dict>
 </plist>

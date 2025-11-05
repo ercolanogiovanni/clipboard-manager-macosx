@@ -35,6 +35,12 @@ if [ -d "Sources/ClipboardManager/Resources" ]; then
     cp -R Sources/ClipboardManager/Resources/* "$BUNDLE_RESOURCES/"
 fi
 
+# Copy app icon
+if [ -f "AppIcon.icns" ]; then
+    echo "🎨 Copying app icon..."
+    cp AppIcon.icns "$BUNDLE_RESOURCES/"
+fi
+
 # Create Info.plist
 echo "📝 Creating Info.plist..."
 cat > "$BUNDLE_CONTENTS/Info.plist" << EOF
@@ -67,6 +73,8 @@ cat > "$BUNDLE_CONTENTS/Info.plist" << EOF
         <string>en</string>
         <string>it</string>
     </array>
+    <key>CFBundleIconFile</key>
+    <string>AppIcon</string>
 </dict>
 </plist>
 EOF
